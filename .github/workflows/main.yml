@@ -65,4 +65,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: user/taxi-api:latest 
+          tags: vakeesanm/taxi-api:latest 
