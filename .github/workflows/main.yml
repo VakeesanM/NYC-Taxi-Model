@@ -53,6 +53,6 @@ jobs:
       - name: Run Docker Container + Smoke Test
         run: |
           docker run -d -p 8000:8000 --name api taxi-api
-          sleep 10
+          sleep 5
           curl http://localhost:8000/ || exit 1
           docker stop api
