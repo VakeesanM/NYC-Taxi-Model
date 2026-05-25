@@ -16,7 +16,7 @@ def test_prediction():
         "Per_Minute_Rate": 0.5,
         "Trip_Duration_Minutes": 15.0
     }
-    respone = client.post("/predict", json=payload)
+    response = client.post("/predict", json=payload)
 
-    assert respone.status_code == 200
-    assert isinstance(respone.json(), float)
+    assert response.status_code == 200
+    assert isinstance(response.json()["prediction"], float)

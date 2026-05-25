@@ -21,4 +21,5 @@ app = FastAPI()
 
 @app.post("/predict")
 def prediction(case:Prediction):
-    return predict(case.model_dump())
+    result = predict(case.model_dump())
+    return {"prediction": result}
