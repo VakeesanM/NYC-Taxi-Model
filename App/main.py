@@ -18,6 +18,10 @@ class Prediction(BaseModel):
 
 app = FastAPI()
 
+@app.get("/")
+def print():
+    return "Go to /predict or /docs to see NYC Taxi Price Prediction Pipeline API!"
+
 
 @app.post("/predict")
 def prediction(case:Prediction):
