@@ -7,7 +7,7 @@ def test_prediction():
     payload = {
         "Trip_Distance_km": 10.5,
         "Time_of_Day": "Morning",
-        "Day_of_Week": "Monday",
+        "Day_of_Week": "Weekday",
         "Passenger_Count": 2,
         "Traffic_Conditions": "Low",
         "Weather": "Clear",
