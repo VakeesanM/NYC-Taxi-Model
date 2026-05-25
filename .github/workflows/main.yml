@@ -23,7 +23,7 @@ jobs:
           pwd
           ls
           find . -maxdepth 2
-          
+
       - name: Install Dependencies
         run: |
           pip install -r requirements.txt
@@ -35,7 +35,7 @@ jobs:
 
       - name: Basic Import Check
         run: |
-          python -c "from app.main import app; print('App import successful')"
+          python -c "from App.main import app; print('App import successful')"
 
 
   docker-test:
