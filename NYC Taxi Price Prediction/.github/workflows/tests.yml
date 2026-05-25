@@ -1,10 +1,10 @@
 name: test Api
 
-on: 
+on:
   push:
-    branches: [ 'main']
-  pull_request: 
-    branches: [ 'main']
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   test:
@@ -13,36 +13,40 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
-      
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python: "3.11"
+          python-version: "3.11"
+
       - name: Install Dependencies
         run: |
           pip install -r requirements.txt
-      - name: Check Unit Tests
+
+      - name: Run Unit Tests
         run: |
-          pytest - v
+          pytest -v
+
       - name: Basic Import Check
         run: |
-          python -c "from app.main import app; print('App imports sucessful')"
+          python -c "from app.main import app; print('App import successful')"
 
-  
-  Docker-Test:
+
+  docker-test:
+    needs: test
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Docker
+      - name: Checkout Repo
         uses: actions/checkout@v4
-      
+
       - name: Build Docker Image
         run: |
           docker build -t taxi-api .
-      
-      - name: Docker running
-        run:
-          docker run -d -p 8000:8000 taxi-api
+
+      - name: Run Docker Container + Smoke Test
+        run: |
+          docker run -d -p 8000:8000 --name api taxi-api
           sleep 10
           curl http://localhost:8000/ || exit 1
           docker stop api
