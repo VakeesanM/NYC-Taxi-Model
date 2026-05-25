@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Path
 from pydantic import BaseModel
-from Model import predict
+from App.Model import predict
 
 class Prediction(BaseModel):
     Trip_Distance_km: float
